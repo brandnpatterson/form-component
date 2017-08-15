@@ -2,4 +2,4 @@
 
 ## Authors
 
-* **Brandon Patterson** - *Initial work* - [brandnpatterson](https://github.com/brandnpatterson)
+* **Brandon Patterson** - [brandnpatterson](https://github.com/brandnpatterson)
