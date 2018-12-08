@@ -1,12 +1,13 @@
 # Form Component
 
-Frontend that requests data from a REST API
+Form that requests data from a REST API built with Ruby on Rails and PostgreSQL
 
 API - [http://form-component-api.herokuapp.com/api/v1/submissions](http://form-component-api.herokuapp.com/api/v1/submissions)
 
 ## Built With
 
-- [Ruby on Rails](https://rubyonrails.org/) - Ruby Framework
+- [Ruby on Rails](https://rubyonrails.org/) - Application framework written in Ruby
+- [PostgreSQL](https://www.postgresql.org/) - Relational Database
 - [Gulp](https://gulpjs.com/) - Task runner
 - [BrowserSync](https://browsersync.io/) - Local server
 - [Sass](https://sass-lang.com/) - SCSS partials
