@@ -72,9 +72,10 @@ gulp.task('styles-prod', ['stylelint'], () => {
 
 gulp.task('default', ['scripts', 'styles'], () => {
   browserSync.init({
-    server: {
-      baseDir: './public'
-    }
+    // server: {
+    //   baseDir: './public'
+    // },
+    proxy: 'localhost:3000'
   });
 
   gulp.watch('./public/dist/src/js/**/*.js', ['scripts']);
