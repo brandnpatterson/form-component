@@ -14,8 +14,8 @@ API - [http://form-component-api.herokuapp.com/api/v1/submissions](http://form-c
 - [Sass](https://sass-lang.com/) - SCSS partials
 - [Babel](https://babeljs.io/) - Compiles JS ES6 to ES5
 - [Webpack](https://webpack.js.org/) - Bundles JS files
-- [Stylelint](https://stylelint.io/) - Lints CSS / SCSS files
-- [ESLint](https://eslint.org/) - Lints JS files
+- [Stylelint](https://stylelint.io/) - Linter for CSS / SCSS files
+- [ESLint](https://eslint.org/) - Linter for JS files
 
 ## Authors
 **Brandon Patterson** - [brandnpatterson](https://github.com/brandnpatterson)
