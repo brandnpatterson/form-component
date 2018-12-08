@@ -8,6 +8,7 @@ API - [http://form-component-api.herokuapp.com/api/v1/submissions](http://form-c
 
 - [Ruby on Rails](https://rubyonrails.org/) - Application framework written in Ruby
 - [PostgreSQL](https://www.postgresql.org/) - Relational Database
+- [Coriander](https://github.com/brandnpatterson/coriander) - Form validation library
 - [Gulp](https://gulpjs.com/) - Task runner
 - [BrowserSync](https://browsersync.io/) - Local server
 - [Sass](https://sass-lang.com/) - SCSS partials
