@@ -16,9 +16,7 @@ API - [http://form-component-api.herokuapp.com/api/v1/submissions](http://form-c
 - [ESLint](https://eslint.org/) - Lints JS files
 
 ## Authors
-
-- **Brandon Patterson** - _Initial work_ - [brandnpatterson](https://github.com/brandnpatterson)
+**Brandon Patterson** - [brandnpatterson](https://github.com/brandnpatterson)
 
 ## License
-
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
