@@ -13,14 +13,14 @@ gulp.task('set-prod-env', () => {
 
 gulp.task('eslint', () => {
   return gulp
-    .src(['./public/dist/src/js/**/*.js', '!node_modules/**'])
+    .src(['./public/src/js/**/*.js', '!node_modules/**'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
 gulp.task('stylelint', () => {
-  return gulp.src('./public/dist/src/sass/**/*.scss').pipe(
+  return gulp.src('./public/src/scss/**/*.scss').pipe(
     styleLint({
       reporters: [{ formatter: 'string', console: true }]
     })
@@ -29,7 +29,7 @@ gulp.task('stylelint', () => {
 
 gulp.task('scripts', ['eslint'], () => {
   return gulp
-    .src('./public/dist/src/js/index.js')
+    .src('./public/src/js/index.js')
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest('./public/dist/'))
     .pipe(browserSync.stream());
@@ -37,7 +37,7 @@ gulp.task('scripts', ['eslint'], () => {
 
 gulp.task('styles', ['stylelint'], () => {
   return gulp
-    .src('./public/dist/src/sass/**/*.scss')
+    .src('./public/src/scss/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(
@@ -53,7 +53,7 @@ gulp.task('styles', ['stylelint'], () => {
 
 gulp.task('styles-prod', ['stylelint'], () => {
   return gulp
-    .src('./public/dist/src/sass/**/*.scss')
+    .src('./public/src/scss/**/*.scss')
     .pipe(
       sass({
         outputStyle: 'compressed'
@@ -75,9 +75,9 @@ gulp.task('default', ['scripts', 'styles'], () => {
     proxy: 'localhost:3000'
   });
 
-  gulp.watch('./public/dist/src/js/**/*.js', ['scripts']);
-  gulp.watch('./public/dist/src/sass/**/*.scss', ['styles']);
-  gulp.watch('./index.html', browserSync.reload);
+  gulp.watch('./public/src/js/**/*.js', ['scripts']);
+  gulp.watch('./public/src/scss/**/*.scss', ['styles']);
+  gulp.watch('./public/index.html', browserSync.reload);
 });
 
 gulp.task('prod', ['set-prod-env', 'scripts', 'styles-prod']);
