@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "coriander": "^1.2.4"
+    "coriander": "^1.2.5"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
