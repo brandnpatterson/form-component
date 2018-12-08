@@ -1,6 +1,6 @@
 # Form Component
 
-Frontend Form that requests data from Form Component API
+Frontend that requests data from a REST API
 
 API - [http://form-component-api.herokuapp.com/api/v1/submissions](http://form-component-api.herokuapp.com/api/v1/submissions)
 
