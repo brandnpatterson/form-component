@@ -2,7 +2,7 @@
 
 Form and REST API built with Ruby on Rails and PostgreSQL
 
-API - [http://form-component-api.herokuapp.com/api/v1/submissions](http://form-component-api.herokuapp.com/api/v1/submissions)
+API - [http://form-component.herokuapp.com/api/v1/submissions](http://form-component.herokuapp.com/api/v1/submissions)
 
 ## Built With
 
@@ -18,7 +18,9 @@ API - [http://form-component-api.herokuapp.com/api/v1/submissions](http://form-c
 - [ESLint](https://eslint.org/) - Linter for JS files
 
 ## Authors
+
 **Brandon Patterson** - [brandnpatterson](https://github.com/brandnpatterson)
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
