@@ -11,11 +11,11 @@ $form.coriander({
   onSubmit(data) {
     const namesObj = {};
 
-    data.inputs.forEach(d => {
-      if (d.type === 'radio') {
-        namesObj[d.name] = d.nextElementSibling.textContent;
+    data.inputs.forEach(input => {
+      if (input.type === 'radio') {
+        namesObj[input.name] = input.nextElementSibling.textContent;
       } else {
-        namesObj[d.name] = d.value;
+        namesObj[input.name] = input.value;
       }
     });
 
@@ -40,8 +40,12 @@ $buttonRequest.addEventListener('click', () => {
       const catItem = document.createElement('li');
       const dogItem = document.createElement('li');
 
-      catItem.innerHTML = `<li class="item-request">${person.name} said ${person.cat}!</li>`;
-      dogItem.innerHTML = `<li class="item-request">${person.name} said ${person.dog}!</li>`;
+      catItem.innerHTML = `<li class="item-request">${person.name} said ${
+        person.cat
+      }!</li>`;
+      dogItem.innerHTML = `<li class="item-request">${person.name} said ${
+        person.dog
+      }!</li>`;
 
       $catData.appendChild(catItem);
       $dogData.appendChild(dogItem);
