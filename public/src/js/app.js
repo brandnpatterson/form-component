@@ -19,12 +19,23 @@ coriander($form, {
       }
     });
 
-    axios.post(req, namesObj).then(() => {
-      data.inputs.forEach(input => {
-        input.value = '';
-        input.checked = false;
+    axios
+      .post(req, namesObj)
+      .then(() => {
+        data.inputs.forEach(input => {
+          input.value = '';
+          input.checked = false;
+        });
+      })
+      .catch(err => {
+        window.scrollTo(0, 0);
+
+        data.inputs.forEach(input => {
+          if (input.name === 'email') {
+            input.nextElementSibling.textContent = err.response.data.error;
+          }
+        });
       });
-    });
   }
 });
 

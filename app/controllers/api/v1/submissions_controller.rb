@@ -11,9 +11,12 @@ class Api::V1::SubmissionsController < ApplicationController
 
   def create
     @submission = Submission.new(submission_params)
+    @error = 'email must be unique'
 
     if @submission.save
       render json: @submission, status: :ok
+    else
+      render json: { error: @error }, status: 400
     end
   end
 

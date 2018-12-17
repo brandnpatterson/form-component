@@ -980,6 +980,14 @@ __WEBPACK_IMPORTED_MODULE_1_coriander___default()($form, {
         input.value = '';
         input.checked = false;
       });
+    }).catch(err => {
+      window.scrollTo(0, 0);
+
+      data.inputs.forEach(input => {
+        if (input.name === 'email') {
+          input.nextElementSibling.textContent = err.response.data.error;
+        }
+      });
     });
   }
 });
