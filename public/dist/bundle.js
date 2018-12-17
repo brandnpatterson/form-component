@@ -962,7 +962,7 @@ const req = '/api/v1/submissions';
 const $form = document.querySelector('.form');
 const $buttonRequest = document.querySelector('.button-request');
 
-$form.coriander({
+__WEBPACK_IMPORTED_MODULE_1_coriander___default()($form, {
   onChange: true,
   onSubmit(data) {
     const namesObj = {};
@@ -1895,10 +1895,21 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 29 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-(function() {
-  'use strict';
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (factory) {
+   true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) :
+  factory();
+}(function () { 'use strict';
+
+  /**
+   * Coriander
+   * v1.3.6
+   */
 
   var forEach = function(arr, callback) {
     for (var i = 0; i < arr.length; i++) {
@@ -1906,24 +1917,19 @@ module.exports = function spread(callback) {
     }
   };
 
-  HTMLElement.prototype.coriander = function(options) {
-    var form = this;
-
-    var coriander = {
-      $radioByName: {},
-      $totalInputsByName: [],
+  function coriander(form, options) {
+    var app = {
+      $totalInputs: [],
       init: function() {
         this.cacheDOM();
         this.bindEvents();
         this.setup();
       },
-
       cacheDOM: function() {
         this.$inputs = form.querySelectorAll('input:not([type="radio"])');
         this.$radioInputs = form.querySelectorAll('input[type="radio"]');
         this.$textAreas = form.querySelectorAll('textarea');
       },
-
       bindEvents: function() {
         var _this = this;
 
@@ -1931,18 +1937,24 @@ module.exports = function spread(callback) {
           e.preventDefault();
           _this.validate();
 
-          var validCount = _this.$totalInputsByName.length;
-          forEach(_this.$totalInputsByName, function(input) {
+          var validCount = _this.$totalInputs.length;
+          forEach(_this.$totalInputs, function(input) {
             if (input.parentNode.dataset.invalid) {
               validCount--;
             }
           });
 
-          if (_this.$totalInputsByName.length === validCount) {
+          if (_this.$totalInputs.length === validCount) {
             if (options.onSubmit) {
               options.onSubmit({
                 form: form,
-                inputs: _this.$totalInputsByName
+                inputs: _this.$totalInputs.filter(function(input) {
+                  if (input.type === 'radio' && input.checked === true) {
+                    return input;
+                  } else if (input.type !== 'radio') {
+                    return input;
+                  }
+                })
               });
             } else {
               form.submit();
@@ -1958,7 +1970,6 @@ module.exports = function spread(callback) {
           this.onChange(this.$textAreas);
         }
       },
-
       onChange: function(inputs) {
         var _this = this;
 
@@ -1968,30 +1979,11 @@ module.exports = function spread(callback) {
           });
         });
       },
-
       setup: function() {
         var _this = this;
 
         forEach(this.$inputs, function(input) {
-          _this.$totalInputsByName.push(input);
-
-          if (!input.dataset.placeholder && input.dataset.required) {
-            var error = document.createElement('p');
-
-            error.classList.add('coriander-error');
-            input.parentNode.appendChild(error);
-          }
-        });
-
-        forEach(_this.$radioInputs, function(input) {
-          if (!_this.$radioByName[input.name]) {
-            _this.$radioByName[input.name] = input;
-            _this.$totalInputsByName.push(input);
-          }
-        });
-
-        forEach(_this.$textAreas, function(input) {
-          _this.$totalInputsByName.push(input);
+          _this.$totalInputs.push(input);
 
           if (input.dataset.required) {
             var error = document.createElement('p');
@@ -2001,40 +1993,32 @@ module.exports = function spread(callback) {
           }
         });
 
-        var input;
-        for (input in _this.$radioByName) {
-          var error = document.createElement('p');
+        forEach(_this.$radioInputs, function(input) {
+          _this.$totalInputs.push(input);
+        });
 
-          error.classList.add('coriander-error');
-          _this.$radioByName[input].parentNode.appendChild(error);
-        }
+        forEach(_this.$textAreas, function(input) {
+          _this.$totalInputs.push(input);
+
+          if (input.dataset.required) {
+            var error = document.createElement('p');
+
+            error.classList.add('coriander-error');
+            input.parentNode.appendChild(error);
+          }
+        });
       },
-
       validate: function(single) {
-        var _this = this;
-
         function validateSingle(input) {
           var dataset = input.dataset;
           var error = input.parentNode.querySelector('.coriander-error');
           var match = input.value.match(input.dataset.regex);
 
-          // @todo refactor
-          if (dataset.placeholder) {
-            if (!dataset.regex && dataset.required && input.value === '') {
-              input.value = '';
-              input.placeholder = 'This value is required';
-              input.parentNode.dataset.invalid = true;
-            } else if (match) {
-              delete input.parentNode.dataset.invalid;
-            } else {
-              input.value = '';
-              input.placeholder = dataset.error;
-              input.parentNode.dataset.invalid = true;
-            }
-          } else if (!dataset.regex && dataset.required && input.value === '') {
+          if (!dataset.regex && dataset.required && input.value === '') {
             if (error) {
               error.textContent = 'This value is required';
             }
+
             input.parentNode.dataset.invalid = true;
           } else if (error) {
             if (match) {
@@ -2050,22 +2034,25 @@ module.exports = function spread(callback) {
           }
         }
 
-        function validateSingleRadio() {
-          var radio = _this.$radioByName[input];
-          var parent = radio.parentNode;
+        function validateSingleRadio(input) {
+          var parent = input.parentNode;
           var error = parent.querySelector('.coriander-error');
 
-          if (form[radio.name].value === 'on') {
-            error.textContent = '';
+          if (form[input.name].value === 'on') {
+            if (error) {
+              error.textContent = '';
+            }
 
             delete parent.dataset.invalid;
           } else {
             if (error) {
-              error.textContent = radio.dataset.error;
+              error.textContent = input.dataset.error;
             }
+
             parent.dataset.invalid = true;
           }
         }
+
         if (single) {
           validateSingle(single);
         } else {
@@ -2078,16 +2065,25 @@ module.exports = function spread(callback) {
           });
 
           var input;
-          for (input in this.$radioByName) {
-            validateSingleRadio(input);
+          for (input in this.$totalInputs) {
+            if (this.$totalInputs[input].type === 'radio') {
+              validateSingleRadio(this.$totalInputs[input]);
+            }
           }
         }
       }
     };
 
-    coriander.init();
-  };
-})();
+    app.init();
+  }
+
+  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = coriander;
+  } else {
+    window.coriander = coriander;
+  }
+
+}));
 
 
 /***/ })

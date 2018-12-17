@@ -1,12 +1,12 @@
 import axios from 'axios';
-import 'coriander';
+import coriander from 'coriander';
 
 const req = '/api/v1/submissions';
 
 const $form = document.querySelector('.form');
 const $buttonRequest = document.querySelector('.button-request');
 
-$form.coriander({
+coriander($form, {
   onChange: true,
   onSubmit(data) {
     const namesObj = {};

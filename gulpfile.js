@@ -80,4 +80,4 @@ gulp.task('default', ['scripts', 'styles'], () => {
   gulp.watch('./public/index.html', browserSync.reload);
 });
 
-gulp.task('prod', ['set-prod-env', 'scripts', 'styles-prod']);
+gulp.task('build', ['set-prod-env', 'scripts', 'styles-prod']);
