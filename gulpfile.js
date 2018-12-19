@@ -7,6 +7,10 @@ const sourcemaps = require('gulp-sourcemaps');
 const styleLint = require('gulp-stylelint');
 const webpack = require('webpack-stream');
 
+gulp.task('set-dev-env', () => {
+  return (process.env.NODE_ENV = 'development');
+});
+
 gulp.task('set-prod-env', () => {
   return (process.env.NODE_ENV = 'production');
 });
@@ -70,7 +74,7 @@ gulp.task('styles-prod', ['stylelint'], () => {
     .pipe(browserSync.stream());
 });
 
-gulp.task('default', ['scripts', 'styles'], () => {
+gulp.task('default', ['set-dev-env', 'scripts', 'styles'], () => {
   browserSync.init({
     proxy: 'localhost:3000'
   });
