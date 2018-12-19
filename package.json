@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf public/dist",
     "build": "npm run clean && gulp build",
-    "deploy": "gulp build && surge",
+    "deploy": "gulp build && git push heroku master",
     "eslint": "eslint src/js/index.js",
     "start": "npm run clean && gulp",
     "stylelint": "stylelint src/sass/**/*.scss"
