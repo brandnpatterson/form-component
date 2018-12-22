@@ -1,6 +1,6 @@
 # Form Component
 
-Form Submission that has a REST API built with Ruby on Rails and PostgreSQL
+Form Submission to a REST API built with Ruby on Rails and PostgreSQL
 
 API - [http://form-component.herokuapp.com/api/v1/submissions](http://form-component.herokuapp.com/api/v1/submissions)
 
