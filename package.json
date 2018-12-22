@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "coriander": "^1.5.2"
+    "coriander": "^1.5.3"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.2.0",
