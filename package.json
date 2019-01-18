@@ -36,5 +36,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/brandnpatterson/form-component.git"
-  }
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
 }
